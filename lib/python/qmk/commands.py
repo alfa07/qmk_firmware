@@ -28,7 +28,7 @@ def _find_make():
     return make_cmd
 
 
-def create_make_target(target, parallel=1, **env_vars):
+def create_make_target(target, dry_run=False, parallel=1, **env_vars):
     """Create a make command
 
     Args:
@@ -52,11 +52,12 @@ def create_make_target(target, parallel=1, **env_vars):
     for key, value in env_vars.items():
         env.append(f'{key}={value}')
 
-    return [make_cmd, *get_make_parallel_args(parallel), *env, target]
+    if dry_run:
+        return [make_cmd, '-n', *get_make_parallel_args(parallel), *env, target]
+    else:
+        return [make_cmd, *get_make_parallel_args(parallel), *env, target]
 
-def create_make_command(keyboard, keymap, target=None, dry_run=False):
-
-def create_make_command(keyboard, keymap, target=None, parallel=1, **env_vars):
+def create_make_command(keyboard, keymap, target=None, dry_run=False, parallel=1, **env_vars):
     """Create a make compile command
 
     Args:
@@ -87,11 +88,7 @@ def create_make_command(keyboard, keymap, target=None, parallel=1, **env_vars):
     if target:
         make_args.append(target)
 
-    if dry_run:
-        return [make_cmd, '-n', ':'.join(make_args)]
-    else:
-        return [make_cmd, ':'.join(make_args)]
-    return create_make_target(':'.join(make_args), parallel, **env_vars)
+    return create_make_target(':'.join(make_args), dry_run, parallel, **env_vars)
 
 
 def get_git_version(current_time, repo_dir='.', check_dir='.'):
