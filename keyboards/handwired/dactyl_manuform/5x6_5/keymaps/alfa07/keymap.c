@@ -39,10 +39,10 @@
 #define HOME_L LALT_T(KC_L)
 #define HOME_SCLN RGUI_T(KC_SCLN)
 
-#define LT1_BS LT(1, KC_BSPC)
+#define LT1_BS LT(_SYMBOL, KC_BSPC)
 
-#define LT2_GRV LT(2, KC_GRV)
-#define LT2_RBRC LT(2, KC_RBRC)
+#define LT2_GRV LT(_ADJUST, KC_GRV)
+#define LT2_RBRC LT(_ADJUST, KC_RBRC)
 
 enum layer_names {
   _QWERTY,
@@ -63,11 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
    * | Ctrl | GuiA | AltS | SftD | CtlF |   G  |                                  |   H  | CtlJ | SftK | AltL | Gui; |  '   |
    * |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-   * | LS/) |   Z  |   X  |   C  |   V  |   B  |                                  |   N  |   M  |   ,  |   .  |   /  | RS/) |
+   * | LS/( |   Z  |   X  |   C  |   V  |   B  |                                  |   N  |   M  |   ,  |   .  |   /  | RS/) |
    * '-----------------------------------------/                                  \-----------------------------------------'
-   *               |  ADJ |   -  |    /  SYM  /---------------.    .---------------\  SYM  \    |  +   | ADJ  |
-   *               |      |      |   /       /  Cmd  / Shift /      \ Shift \  Cmd  \       \   |      |      |
-   *               '-------------'  '-------/ Space / Enter /        \ Enter \ Space \-------'  '-------------'
+   *             | LT2(`) |   -  |    /  SYM  /---------------.    .---------------\  SYM  \    |  +   | LT2(]) |
+   *             |        |      |   /       /  Cmd  / Shift /      \ Shift \  Cmd  \       \   |      |        |
+   *             '---------------'  '-------/ Space / Enter /        \ Enter \ Space \-------'  '---------------'
    *                                       /---------------/          \---------------\
    *                                      /  Ctrl  / Alt  /            \  Alt  \  Ctrl \
    *                                     /        /      /              \       \       \
@@ -111,9 +111,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * .-----------------------------------------.                                  .-----------------------------------------.
    * |   `  |  F1  |  F2  |  F3  |  F4  |  F5  |                                  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
    * |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-   * |      |   !  |   @  |   [  |   ]  |   +  |                                  |      |      |  up  |      |      |  F12 |
+   * |      |   !  |   @  |   [  |   ]  |   +  |                                  |      |      |      |      |      |  F12 |
    * |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-   * |      |   &  |   |  |   (  |   )  |   -  |                                  |      | left | down | right|  ?   |      |
+   * |      |   &  |   |  |   (  |   )  |   -  |                                  | left | down |  up  | right|  ?   |      |
    * |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
    * |      |   *  |   /  |   {  |   }  |   =  |                                  |      |      |      |      |      |      |
    * '-----------------------------------------/                                  \-----------------------------------------'
@@ -126,8 +126,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                    '---------------'                '---------------'
    */
    KC_GRV , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                                     KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 ,
-   XXXXXXX, KC_EXLM, KC_AT  , KC_LBRC, KC_RBRC, KC_PPLS,                                     XXXXXXX, XXXXXXX, KC_UP  , XXXXXXX, XXXXXXX, KC_F12 ,
-   _______, KC_AMPR, KC_PIPE, KC_LPRN, KC_RPRN, KC_MINS,                                     XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, KC_QUES, XXXXXXX,
+   XXXXXXX, KC_EXLM, KC_AT  , KC_LBRC, KC_RBRC, KC_PPLS,                                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_F12 ,
+   _______, KC_AMPR, KC_PIPE, KC_LPRN, KC_RPRN, KC_MINS,                                     KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, KC_QUES, XXXXXXX,
    _______, KC_ASTR, KC_SLSH, KC_LCBR, KC_RCBR, KC_PEQL,                                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
                      XXXXXXX, XXXXXXX,          _______, _______, _______, _______, _______, _______,          XXXXXXX, XXXXXXX,
                                                          _______, _______, _______, _______
